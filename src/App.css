@@ -150,6 +150,14 @@ li {
   margin-top: 15px
 }
 
+.low-priority {
+  background-color: #fff; 
+}
 
+.medium-priority {
+  background-color: #ffee58; 
+}
 
-
+.high-priority {
+  background-color: #ff0000; 
+}

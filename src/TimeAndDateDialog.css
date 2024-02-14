@@ -1,0 +1,97 @@
+/* TimeAndDateDialog.css */
+
+.time-and-date-dialog {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 400px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.time-and-date-dialog h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.tag-container,
+.priority-container,
+.subtask-container,
+.notes-container,
+.button-container {
+  margin-top: 20px;
+}
+
+.tag-input-container,
+.subtask-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.tag-input-container input,
+.subtask-input-container input {
+  flex: 1;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.tag,
+.subtask {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.tag button,
+.subtask button {
+  background-color: transparent;
+  border: none;
+  color: #999;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.button-container button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-container button:last-child {
+  background-color: #f44336;
+}
+
+.notes-container textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 100px;
+}
+
+@media (max-width: 500px) {
+  .time-and-date-dialog {
+    max-width: 75%;
+    max-height: 80%
+  }
+}

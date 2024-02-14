@@ -1,58 +1,57 @@
 Date and Time:
-
 Allow users to set due dates and times for tasks.
 Implement a sorting feature to organize tasks based on their due dates.
-Categories and Labels:
 
+Categories and Labels:
 Introduce a tagging system or categories to help users organize tasks into different groups.
 Allow users to filter tasks based on categories or labels.
-Priority Levels:
 
+Priority Levels:
 Implement a priority system (e.g., low, medium, high) for tasks.
 Provide the ability to sort or filter tasks based on their priority levels.
-Subtasks:
 
+Subtasks:
 Allow users to break down tasks into smaller subtasks.
 Display subtasks within the main task for better task management.
-Notes and Descriptions:
 
+Notes and Descriptions:
 Enable users to add detailed notes or descriptions to tasks.
 Display task details in a modal or a separate section for better readability.
-Reminders:
 
+Reminders:
 Implement a reminder system that sends notifications or emails for upcoming tasks.
 Allow users to customize reminder settings.
-Search and Filter:
 
+Search and Filter:
 Add a search functionality to quickly find specific tasks.
 Implement advanced filtering options based on various criteria.
-Dark Mode:
 
+Dark Mode:
 Provide a dark mode option for users who prefer a different color scheme.
 Allow users to switch between light and dark modes.
-User Accounts:
 
+User Accounts:
 Introduce user accounts to allow users to save and sync their tasks across devices.
 Implement authentication and user-specific data storage.
+
 Undo/Redo Actions:
-
 Include the ability to undo or redo actions in case of accidental task modifications or deletions.
-Recurring Tasks:
 
+Recurring Tasks:
 Enable users to set recurring tasks (daily, weekly, monthly).
 Implement options for custom recurrence patterns.
-Attachments:
 
+Attachments:
 Allow users to attach files or links to tasks.
 Display attached files within the task details.
 Collaboration:
 
 Add collaboration features to share tasks or lists with other users.
 Implement real-time updates for collaborative editing.
-Analytics:
 
+Analytics:
 Provide insights into task completion rates, productivity trends, etc.
 Display charts or graphs to visualize task-related data.
-Customization:
 
+Customization:
 Allow users to customize the app's appearance, such as themes and layout options.
