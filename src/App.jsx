@@ -51,6 +51,7 @@ export default function App() {
   const addTodo = () => {
     if (todo.trim() !== '') {
       const newTask = { id: Date.now(), word: todo, complete: false, date: null };
+      console.log(newTask)
       dispatch(setList([...list, newTask])); 
       dispatch(setInitialDateTimeSet({ ...initialDateTimeSet, [newTask.id]: false })); 
       dispatch(setTodo('')); 
@@ -58,13 +59,13 @@ export default function App() {
   };
 
   const onCheckboxClick = (taskId) => {
-    const newList = [...list];
-    const taskIndex = newList.findIndex(task => task.id === taskId);
-    if (taskIndex !== -1) {
-      newList[taskIndex].complete = !newList[taskIndex].complete;
-      dispatch(setList(newList));
-    }
+    const newList = list.map(task => 
+      task.id === taskId ? { ...task, complete: !task.complete } : task
+    );
+
+    dispatch(setList(newList));
   };
+
 
   const onDelete = (taskId, e) => {
     e.stopPropagation();
