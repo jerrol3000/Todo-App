@@ -3,12 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isOpen: false,
-  date: new Date(),
+  date: null,
   tags: [],
   priority: 'Low',
   subtasks: [],
   notes: ''
 };
+
 
 const dialogSlice = createSlice({
   name: 'dialog',

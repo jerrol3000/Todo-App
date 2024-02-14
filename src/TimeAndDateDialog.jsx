@@ -9,7 +9,7 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
   const dispatch = useDispatch();
   const { date, tags, priority, subtasks, notes } = useSelector(state => state.dialog);
 
-  console.log(date)
+  
 
   const handleSave = () => {
     const taskDetails = {
