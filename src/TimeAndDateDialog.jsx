@@ -10,7 +10,6 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
   const { date, tags, priority, subtasks, notes } = useSelector(state => state.dialog);
 
   
-
   const handleSave = () => {
     const taskDetails = {
       date: date,
@@ -28,19 +27,18 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
   };
 
   const removeTag = (index) => {
-    const updatedTags = [...tags];
-    updatedTags.splice(index, 1);
+    const updatedTags = tags.filter((_, i) => i !== index);
     dispatch(setTags(updatedTags));
   };
 
-  const addSubtask = (subtask) => {
-    dispatch(setSubtasks([...subtasks, subtask]));
+  const removeSubtask = (index) => {
+    const updatedSubtasks = subtasks.filter((_, i) => i !== index);
+    dispatch(setSubtasks(updatedSubtasks));
   };
 
-  const removeSubtask = (index) => {
-    const updatedSubtasks = [...subtasks];
-    updatedSubtasks.splice(index, 1);
-    dispatch(setSubtasks(updatedSubtasks));
+
+  const addSubtask = (subtask) => {
+    dispatch(setSubtasks([...subtasks, subtask]));
   };
 
   return (

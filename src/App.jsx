@@ -19,11 +19,13 @@ export default function App() {
 
   const handleOpenDialog = (taskId) => {
     dispatch(setSelectedTaskId(taskId)); 
+     console.log('i am open = ', showDialog)
     dispatch(setShowDialog(true)); 
   };
 
   const handleCloseDialog = () => {
     dispatch(setShowDialog(false)); 
+    console.log('i am close')
   };
 
   const handleSaveDate = (taskDetails) => {
@@ -141,8 +143,8 @@ export default function App() {
             key={myTodo.id}
             className={`${myTodo.isDeleting ? 'delete-animation' : ''} ${getPriorityColorClass(myTodo.priority)}`}
             onClick={() => {
-              dispatch(setSelectedTaskId(myTodo.id)); 
-              console.log('selectedTaskId after click:', selectedTaskId);
+              console.log(showDialog)
+              dispatch(setSelectedTaskId(myTodo.id));
               !initialDateTimeSet[myTodo.id] && handleOpenDialog(myTodo.id);
             }}
           >
