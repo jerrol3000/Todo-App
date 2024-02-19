@@ -59,7 +59,7 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
       <h4>Select Time and Date</h4>
       <DatePicker
         selected={date}
-        onChange={(newDate) => dispatch(setDate(newDate.toISOString()))}
+        onChange={(newDate) => dispatch(setDate(newDate))}
         showTimeSelect
         timeFormat="HH:mm"
         dateFormat="MMMM d, yyyy h:mm aa"
