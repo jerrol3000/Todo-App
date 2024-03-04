@@ -1,15 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
-import TimeAndDateDialog from './TimeAndDateDialog';
-import TodoDetail from './TodoDetail';
-import { useDispatch, useSelector } from 'react-redux'; 
-import { setTodo, setList, setShowDialog, setSelectedDate, setSelectedTaskId, setInitialDateTimeSet } from '../store/slices/mainSlice'; 
-import { mainSlice } from '../store/slices/mainSlice'; 
+import React, { useState, useRef, useEffect } from "react";
+import "./App.css";
+import TimeAndDateDialog from "./TimeAndDateDialog";
+import TodoDetail from "./TodoDetail";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTodo,
+  setList,
+  setShowDialog,
+  setSelectedDate,
+  setSelectedTaskId,
+  setInitialDateTimeSet,
+} from "../store/slices/mainSlice";
+import { mainSlice } from "../store/slices/mainSlice";
 export default function App() {
-  const dispatch = useDispatch(); 
-  
-  const { todo, list, showDialog, selectedDate, selectedTaskId, initialDateTimeSet } = useSelector((state) => state.main);
+  const dispatch = useDispatch();
 
+  const {
+    todo,
+    list,
+    showDialog,
+    selectedDate,
+    selectedTaskId,
+    initialDateTimeSet,
+  } = useSelector((state) => state.main);
 
   const inputRef = useRef(null);
 
@@ -18,68 +31,78 @@ export default function App() {
   }, [list]);
 
   const handleOpenDialog = (taskId) => {
-    dispatch(setSelectedTaskId(taskId)); 
-     console.log('i am open = ', showDialog)
-    dispatch(setShowDialog(true)); 
+    dispatch(setSelectedTaskId(taskId));
+    console.log("i am open = ", showDialog);
+    dispatch(setShowDialog(true));
   };
 
   const handleCloseDialog = () => {
-    dispatch(setShowDialog(false)); 
-    console.log('i am close')
+    dispatch(setShowDialog(false));
   };
 
   const handleSaveDate = (taskDetails) => {
     if (selectedTaskId !== null) {
       const newList = [...list];
-      const taskIndex = newList.findIndex(task => task.id === selectedTaskId);
+      const taskIndex = newList.findIndex((task) => task.id === selectedTaskId);
       if (taskIndex !== -1) {
         newList[taskIndex] = {
           ...newList[taskIndex],
-          ...taskDetails
+          ...taskDetails,
         };
-        dispatch(setList(newList)); 
-        dispatch(setInitialDateTimeSet({ ...initialDateTimeSet, [selectedTaskId]: true })); 
-        dispatch(setSelectedDate(null)); 
-        dispatch(setShowDialog(false)); 
+        dispatch(setList(newList));
+        dispatch(
+          setInitialDateTimeSet({
+            ...initialDateTimeSet,
+            [selectedTaskId]: true,
+          }),
+        );
+        dispatch(setSelectedDate(null));
+        dispatch(setShowDialog(false));
         sortListByDate(newList);
       }
     }
   };
 
   const onInputChange = (e) => {
-    dispatch(setTodo(e.target.value)); 
+    dispatch(setTodo(e.target.value));
   };
 
   const addTodo = () => {
-    if (todo.trim() !== '') {
-      const newTask = { id: Date.now(), word: todo, complete: false, date: null };
-      console.log(newTask)
-      dispatch(setList([...list, newTask])); 
-      dispatch(setInitialDateTimeSet({ ...initialDateTimeSet, [newTask.id]: false })); 
-      dispatch(setTodo('')); 
+    if (todo.trim() !== "") {
+      const newTask = {
+        id: Date.now(),
+        word: todo,
+        complete: false,
+        date: null,
+      };
+      console.log(newTask);
+      dispatch(setList([...list, newTask]));
+      dispatch(
+        setInitialDateTimeSet({ ...initialDateTimeSet, [newTask.id]: false }),
+      );
+      dispatch(setTodo(""));
     }
   };
 
   const onCheckboxClick = (taskId) => {
-    const newList = list.map(task => 
-      task.id === taskId ? { ...task, complete: !task.complete } : task
+    const newList = list.map((task) =>
+      task.id === taskId ? { ...task, complete: !task.complete } : task,
     );
 
     dispatch(setList(newList));
   };
 
-
   const onDelete = (taskId, e) => {
     e.stopPropagation();
-    const newList = list.filter(task => task.id !== taskId);
-    dispatch(setList(newList)); 
+    const newList = list.filter((task) => task.id !== taskId);
+    dispatch(setList(newList));
     const newInitialDateTimeSet = { ...initialDateTimeSet };
     delete newInitialDateTimeSet[taskId];
-    dispatch(setInitialDateTimeSet(newInitialDateTimeSet)); 
+    dispatch(setInitialDateTimeSet(newInitialDateTimeSet));
   };
 
   const onEnterPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addTodo();
     }
   };
@@ -90,19 +113,19 @@ export default function App() {
       const dateB = new Date(b.date);
       return dateA - dateB;
     });
-    dispatch(setList(newList)); 
+    dispatch(setList(newList));
   };
 
   const getPriorityColorClass = (priority) => {
     switch (priority) {
-      case 'Low':
-        return 'low-priority';
-      case 'Medium':
-        return 'medium-priority';
-      case 'High':
-        return 'high-priority';
+      case "Low":
+        return "low-priority";
+      case "Medium":
+        return "medium-priority";
+      case "High":
+        return "high-priority";
       default:
-        return ''; 
+        return "";
     }
   };
 
@@ -129,21 +152,22 @@ export default function App() {
           />
         )}
         {selectedTaskId !== null && initialDateTimeSet[selectedTaskId] && (
-          <TodoDetail 
-            todo={list.find(task => task.id === selectedTaskId)} 
-            isOpen={true} 
-            isClose={() => dispatch(setSelectedTaskId(null))} 
+          <TodoDetail
+            todo={list.find((task) => task.id === selectedTaskId)}
+            isOpen={true}
+            isClose={() => dispatch(setSelectedTaskId(null))}
           />
         )}
-
       </>
       <ul>
         {list.map((myTodo) => (
           <li
             key={myTodo.id}
-            className={`${myTodo.isDeleting ? 'delete-animation' : ''} ${getPriorityColorClass(myTodo.priority)}`}
+            className={`${
+              myTodo.isDeleting ? "delete-animation" : ""
+            } ${getPriorityColorClass(myTodo.priority)}`}
             onClick={() => {
-              console.log(showDialog)
+              console.log(showDialog);
               dispatch(setSelectedTaskId(myTodo.id));
               !initialDateTimeSet[myTodo.id] && handleOpenDialog(myTodo.id);
             }}
@@ -153,11 +177,18 @@ export default function App() {
               onChange={() => onCheckboxClick(myTodo.id)}
               onClick={(e) => e.stopPropagation()}
             />
-            <span className={myTodo.complete ? 'checked' : ''}>{myTodo.word}</span>
+            <span className={myTodo.complete ? "checked" : ""}>
+              {myTodo.word}
+            </span>
             <div className="date-time-container">
-              <span className="date-time">{myTodo.date ? myTodo.date.toLocaleString() : ''}</span>
+              <span className="date-time">
+                {myTodo.date ? myTodo.date.toLocaleString() : ""}
+              </span>
             </div>
-            <button className="delete-button" onClick={(e) => onDelete(myTodo.id, e)}>
+            <button
+              className="delete-button"
+              onClick={(e) => onDelete(myTodo.id, e)}
+            >
               x
             </button>
           </li>

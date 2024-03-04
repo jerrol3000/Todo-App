@@ -41,6 +41,10 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
     dispatch(setSubtasks([...subtasks, subtask]));
   };
 
+  const handleDateChange = (date) => {
+    dispatch(setDate(date));
+  };
+
   return (
     <div style={{ 
       position: 'fixed',
@@ -59,7 +63,7 @@ const TimeAndDateDialog = ({ onSave, onClose }) => {
       <h4>Select Time and Date</h4>
       <DatePicker
         selected={date}
-        onChange={(newDate) => dispatch(setDate(newDate))}
+        onChange={(newDate) => handleDateChange(newDate)} //issue is right here
         showTimeSelect
         timeFormat="HH:mm"
         dateFormat="MMMM d, yyyy h:mm aa"
